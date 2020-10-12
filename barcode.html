@@ -7,7 +7,12 @@
        <a-scene arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
     <!-- marker id=0 -->
     <a-marker type="barcode" value="5">
-        <a-sphere material="color: blue; opacity: 0.5" radius="0.25"></a-sphere>
+        <a-entity
+          position="0 0 0"
+          rotation="270 0 0"
+          scale="1.0 1.0 1.0"
+          gltf-model="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF/Lantern.gltf"
+        ></a-entity>
     </a-marker>
 
     <!-- marker id=1 -->
