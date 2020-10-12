@@ -7,11 +7,30 @@
     <a-scene embedded arjs>
       <a-marker preset="hiro">
         <a-entity
+          <a-animation attribute="rotation"
+                    dur="2000"
+                    easing="linear"
+                    from="0 0 0"
+                    to="0 360 0"
+                    repeat="indefinite"></a-animation>
           position="0 0 0"
           rotation="270 0 0"
           scale="1.0 1.0 1.0"
           gltf-model="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF/Duck.gltf"
         ></a-entity>
+    
+        <a-entity
+              <a-animation attribute="rotation"
+                        dur="2000"
+                        easing="linear"
+                        from="0 0 0"
+                        to="0 -360 0"
+                        repeat="indefinite"></a-animation>
+              position="0 0 0"
+              rotation="270 0 0"
+              scale="1.0 1.0 1.0"
+              gltf-model="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF/Duck.gltf"
+            ></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
