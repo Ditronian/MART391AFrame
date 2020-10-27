@@ -1,83 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style type="text/css">
-        body {
-            margin: 0;
-            background-color: #000;
-        }
-        canvas {
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <script type="module">
-        // Import three
-        import * as THREE from 'https://unpkg.com/three/build/three.module.js';
-        // Import the default VRButton
-        import { VRButton } from 'https://unpkg.com/three/examples/jsm/webxr/VRButton.js';
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+        <title>Babylon - Getting Started</title>
+        <!--- Link to the last version of BabylonJS --->
+        <script src="https://preview.babylonjs.com/babylon.js"></script>
+        <style>
+            html,
+            body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
 
-        // Make a new scene
-        let scene = new THREE.Scene();
-        // Set background color of the scene to gray
-        scene.background = new THREE.Color(0x505050);
+            #renderCanvas {
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+            }
+        </style>
+    </head>
 
-        // Make a camera. note that far is set to 100, which is better for realworld sized environments
-        let camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
-        camera.position.set(0, 1.6, 3);
-        scene.add(camera);
+    <body>
+        <canvas id="renderCanvas"></canvas>
+        <script>
+            window.addEventListener('DOMContentLoaded', async function () {
+                // get the canvas DOM element
+                var canvas = document.getElementById('renderCanvas');
+                // load the 3D engine
+                var engine = new BABYLON.Engine(canvas, true);
+                // createScene function that creates and return the scene
+                var createScene = async function () {
+                    // create a basic BJS Scene object
+                    var scene = new BABYLON.Scene(engine);
+                    // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
+                    var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5, -10), scene);
+                    // target the camera to scene origin
+                    camera.setTarget(BABYLON.Vector3.Zero());
+                    // attach the camera to the canvas
+                    camera.attachControl(canvas, false);
+                    // create a basic light, aiming 0,1,0 - meaning, to the sky
+                    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
+                    // create a built-in "sphere" shape; its constructor takes 6 params: name, segment, diameter, scene, updatable, sideOrientation 
+                    var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
+                    // move the sphere upward 1/2 of its height
+                    sphere.position.y = 1;
+                    // create a built-in "ground" shape;
+                    var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
 
-        // Add some lights
-        var light = new THREE.DirectionalLight(0xffffff,0.5);
-        light.position.set(1, 1, 1).normalize();
-        scene.add(light);
-        scene.add(new THREE.AmbientLight(0xffffff,0.5))
+                    // Add XR support
+                    var xr = await scene.createDefaultXRExperienceAsync({/* configuration options, as needed */})
+                    // return the created scene
+                    return scene;
+                }
 
-        // Make a red cube
-        let cube = new THREE.Mesh(
-            new THREE.BoxBufferGeometry(1,1,1),
-            new THREE.MeshLambertMaterial({color:'red'})
-        );
-        cube.position.set(0, 1.5, -10);
-        scene.add(cube);
+                // call the createScene function
+                var scene = await createScene();
 
-        // Make a renderer that fills the screen
-        let renderer = new THREE.WebGLRenderer({antialias: true});
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        // Turn on VR support
-        renderer.vr.enabled = true;
-        // Set animation loop
-        renderer.setAnimationLoop(render);
-        // Add canvas to the page
-        document.body.appendChild(renderer.domElement);
+                // run the render loop
+                engine.runRenderLoop(function () {
+                    scene.render();
+                });
 
-        // Add a button to enter/exit vr to the page
-        document.body.appendChild(VRButton.createButton(renderer));
-
-        // For AR instead, import ARButton at the top
-        //    import { ARButton } from 'https://unpkg.com/three/examples/jsm/webxr/ARButton.js';
-        // then create the button
-        //  document.body.appendChild(ARButton.createButton(renderer));
-
-        // Handle browser resize
-        window.addEventListener('resize', onWindowResize, false);
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        function render(time) {
-            // Rotate the cube
-            cube.rotation.y = time / 1000;
-            // Draw everything
-            renderer.render(scene, camera);
-        }
-    </script>
-</body>
+                // the canvas/window resize event handler
+                window.addEventListener('resize', function () {
+                    engine.resize();
+                });
+            });
+        </script>
+    </body>
 </html>
