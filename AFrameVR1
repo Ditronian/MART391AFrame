@@ -8,7 +8,11 @@
     <a-scene>
       <a-entity id="river" geometry="primitive: plane" material="color: blue"
           position="-10 0 0" sound="src: url(https://cdn.aframe.io/basic-guide/audio/backgroundnoise.wav); autoplay: true; loop: true;"></a-entity>
-      
+      <a-assets>
+      <a-asset-item id="sixDice" src="https://raw.githubusercontent.com/Ditronian/MART391AFrame/master/model.gltf"></a-asset-item>
+      </a-assets>
+
+      <a-entity gltf-model="#sixDice"></a-entity>
      <a-entity environment="preset: canyon; dressingAmount: 500"></a-entity>
       <a-sky src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg"></a-sky>
     </a-scene>
