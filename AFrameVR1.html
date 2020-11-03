@@ -9,8 +9,9 @@
       <a-assets>
       <a-asset-item id="grump" src="https://raw.githubusercontent.com/Ditronian/MART391AFrame/master/model.gltf"></a-asset-item>
       </a-assets>
-
-      <a-entity gltf-model="#grump" rotation="0 90 0"></a-entity>
+       <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
+        
+      <a-entity gltf-model="#grump" rotation="0 90 0" animation__mouseenter="property: scale; to: 2.3 2.3 2.3; dur: 300; startEvents: mouseenter"></a-entity>
       <a-entity environment="preset: egypt; dressingAmount: 500"></a-entity>
       <a-light type="point" intensity="2" position="2 4 4"></a-light>
     </a-scene>
