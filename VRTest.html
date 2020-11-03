@@ -17,8 +17,14 @@
         let cylinder = document.getElementById("cylinder");
         let plane = document.getElementById("plane");
         
-        box.setAttribute('rotation', {x: 15, y: 30, z: 90});
-        alert(box.getAttribute('rotation'));
+        let xRot = 0;
+        while(true)
+        {
+          box.setAttribute('rotation', {x: xRot, y: 30, z: 90});
+          xRot++;
+        }
+        
+        
     </script>
   </body>
 </html>
