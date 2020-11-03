@@ -7,26 +7,36 @@
   <body>
     <a-scene>
       <a-assets>
-      <a-asset-item id="grump" src="https://raw.githubusercontent.com/Ditronian/MART391AFrame/master/model.gltf"></a-asset-item>
+      <a-asset-item id="grump1" src="https://raw.githubusercontent.com/Ditronian/MART391AFrame/master/model.gltf"></a-asset-item>
       </a-assets>
-       <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
         
-      <a-entity gltf-model="#grump" rotation="0 90 0" animation__mouseenter="property: scale; to: 2.3 2.3 2.3; dur: 300; startEvents: mouseenter"></a-entity>
+      <a-entity id="grump2" gltf-model="#grump1" rotation="200 90 200"></a-entity>
       <a-entity environment="preset: egypt; dressingAmount: 500"></a-entity>
       <a-light type="point" intensity="2" position="2 4 4"></a-light>
     </a-scene>
     
     <script>
-        let grump = document.getElementById("grump");
+        let grump = document.getElementById("grump2");
         
         let xRot = 0;
         let yRot = 0;
         let zRot = 0;
-        let sphereX = 0;
-        let isLeft = true;
+        let scale = 1;
+        let isGrowing = true;
         setInterval(() =>
         {
-
+          if(isGrowing && scale <= 2) 
+          {
+            grump.setAttribute('scale', {x: scale, y: scale, z: scale});
+            scale += 0.1;
+          }
+          else if(isGrowing && scale > 2) isGrowing = false;
+          else if(!isGrowing && scale >= 0.5) 
+          {
+            grump.setAttribute('position', {x: scale, y: scale, z: scale});
+            scale -= 0.1;
+          }
+          else if(!isGrowing && scale < 0.5) isGrowing = true;
         }, 10);
     </script>
   </body>
