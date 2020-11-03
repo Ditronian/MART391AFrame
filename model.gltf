@@ -117,7 +117,7 @@
 		{
 			"byteLength" : 34028,
 			"name" : "model",
-			"uri" : "https://github.com/Ditronian/MART391AFrame/raw/master/model.bin"
+			"uri" : "model.bin"
 		}
 	],
 	"materials" : 
