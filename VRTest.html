@@ -18,9 +18,17 @@
         let plane = document.getElementById("plane");
         
         let xRot = 0;
-        setInterval(() =>{box.setAttribute('rotation', {x: xRot, y: 30, z: 90});xRot++;}, 3000);
-        
-        
+        let yRot = 0;
+        let zRot = 0;
+        setInterval(() =>
+        {
+        box.setAttribute('rotation', {x: xRot, y: 0, z: 0});
+        xRot++;
+        sphere.setAttribute('rotation', {x: 0, y: YRot, z: 0});
+        YRot++;
+        cylinder.setAttribute('rotation', {x: 0, y: 0, z: zRot});
+        zRot++;
+        }, 100);
     </script>
   </body>
 </html>
