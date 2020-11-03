@@ -22,11 +22,11 @@
         let zRot = 0;
         setInterval(() =>
         {
-        box.setAttribute('rotation', {x: xRot, y: 0, z: 0});
+        box.setAttribute('rotation', {x: xRot, y: YRot, z: zRot});
+        sphere.setAttribute('rotation', {x: xRot, y: YRot, z: zRot});
+        cylinder.setAttribute('rotation', {x: xRot, y: YRot, z: zRot});
         xRot++;
-        sphere.setAttribute('rotation', {x: 0, y: YRot, z: 0});
         YRot++;
-        cylinder.setAttribute('rotation', {x: 0, y: 0, z: zRot});
         zRot++;
         }, 100);
     </script>
