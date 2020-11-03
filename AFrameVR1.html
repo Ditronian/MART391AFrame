@@ -18,9 +18,6 @@
     <script>
         let grump = document.getElementById("grump2");
         
-        let xRot = 0;
-        let yRot = 0;
-        let zRot = 0;
         let scale = 1;
         let isGrowing = true;
         setInterval(() =>
@@ -28,13 +25,13 @@
           if(isGrowing && scale <= 2) 
           {
             grump.setAttribute('scale', {x: scale, y: scale, z: scale});
-            scale += 0.1;
+            scale += 0.005;
           }
           else if(isGrowing && scale > 2) isGrowing = false;
           else if(!isGrowing && scale >= 0.5) 
           {
             grump.setAttribute('scale', {x: scale, y: scale, z: scale});
-            scale -= 0.1;
+            scale -= 0.005;
           }
           else if(!isGrowing && scale < 0.5) isGrowing = true;
         }, 10);
