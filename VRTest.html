@@ -2,6 +2,14 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+    <script>
+        let box = document.getElementById("box");
+        let sphere = document.getElementById("sphere");
+        let cylinder = document.getElementById("cylinder");
+        let plane = document.getElementById("plane");
+        
+        box.setAttribute('rotation', {x: 15, y: 30, z: 90});
+    </script>
   </head>
   <body>
     <a-scene>
@@ -12,16 +20,4 @@
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
   </body>
-  <script>
-        let box = document.getElementById("box");
-        let sphere = document.getElementById("sphere");
-        let cylinder = document.getElementById("cylinder");
-        let plane = document.getElementById("plane");
-        while(true)
-        {
-          setTimeout(() => { box.style.rotation = box.style.rotation.x+10 + " " + box.style.rotation.y  + " " + box.style.rotation.z; }, 2000);
-          
-        }
-        //
-    </script>
 </html>
