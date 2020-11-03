@@ -20,14 +20,27 @@
         let xRot = 0;
         let yRot = 0;
         let zRot = 0;
+        let sphereX = 0;
+        let isLeft = true;
         setInterval(() =>
         {
-        box.setAttribute('rotation', {x: xRot, y: yRot, z: zRot});
-        sphere.setAttribute('rotation', {x: xRot, y: yRot, z: zRot});
-        cylinder.setAttribute('rotation', {x: -xRot, y: -yRot, z: -zRot});
-        xRot++;
-        yRot++;
-        zRot++;
+          box.setAttribute('rotation', {x: xRot, y: yRot, z: zRot});
+          cylinder.setAttribute('rotation', {x: -xRot, y: -yRot, z: -zRot});
+          xRot++;
+          yRot++;
+          zRot++;
+          if(isLeft && sphereX != -2) 
+          {
+            sphere.setAttribute('position', {x: sphereX, y: 1.25, z: -5});
+            sphereX -= 0.1;
+          }
+          else if(isLeft && sphereX == -2) isLeft = false;
+          else if(!isLeft && sphereX != 2) 
+          {
+            sphere.setAttribute('position', {x: sphereX, y: 1.25, z: -5});
+            sphereX += 0.1;
+          }
+          else if(!isLeft && sphereX == 2) isLeft = false;
         }, 10);
     </script>
   </body>
